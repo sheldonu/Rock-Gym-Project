@@ -11,7 +11,7 @@
     "http"
   ],
   "paths": {
-    "/route_setter/": {
+    "/setter/": {
       "get": {
         "description": "",
         "produces": [
@@ -24,7 +24,41 @@
         }
       }
     },
-    "/route_setter/{id}": {
+    "/setter/{id}": {
+      "get": {
+        "description": "",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/routes/": {
+      "get": {
+        "description": "",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/routes/{id}": {
       "get": {
         "description": "",
         "produces": [

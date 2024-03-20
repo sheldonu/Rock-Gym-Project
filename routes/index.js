@@ -6,6 +6,8 @@ const router = express.Router();
 try{
     router.use('/setter', require('./setter'));
     router.use('/routes', require('./routes_set' ));
+    router.use('/user', require('./user'));
+    router.use('/comments', require('./climbers_comments'));
     router.use('/', require('./swagger'));
 }catch (error){
     console.log(error)
