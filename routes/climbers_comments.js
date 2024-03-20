@@ -4,10 +4,10 @@ const router = express.Router();
 const { check, validationResult } = require('express-validator')
 const { userValidationRules, validate } = require('../validator');
 
-const contactCon = require('../controller/user')
+const contactCon = require('../controller/climbers_comments')
 // GET /feed/posts
-router.get('/', contactCon.getAllUsers);
+router.get('/', contactCon.getAllComments);
 
-router.get('/:id', contactCon.getOneUser);
+router.get('/:id', contactCon.getOneComment);
 
 module.exports = router;

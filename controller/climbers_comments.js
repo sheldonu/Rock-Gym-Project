@@ -1,6 +1,6 @@
 const mongodb = require('../db/connect');
 const ObjectId = require('mongodb').ObjectId;
-const collection_name = 'climbers_account'
+const collection_name = 'climbers_comment'
 
 //deleting an entry
 function errorHandling(res, error) {
@@ -29,7 +29,7 @@ function errorHandling(res, error) {
 }
 
 // getting all the route setters form database
-const getAllUsers= async (req, res) => {
+const getAllComments = async (req, res) => {
     try {
         // .find finds everything in there
         const cursor = await mongodb.getDb().db().collection(collection_name).find({});
@@ -46,7 +46,7 @@ const getAllUsers= async (req, res) => {
   };
 
   //getting single one
-  const getOneUser = async (req, res) => {
+  const getOneComment = async (req, res) => {
     try {
       const userId = new ObjectId(req.params.id);
       const result = await mongodb
@@ -65,6 +65,6 @@ const getAllUsers= async (req, res) => {
   };
 
   module.exports = {
-    getAllUsers,
-    getOneUser
+    getAllComments,
+    getOneComment
   };
