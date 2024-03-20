@@ -4,15 +4,11 @@ const router = express.Router();
 
 //routes
 try{
-    router.use('/warmies', require('./warmies'));
-    router.use('/orders', require('./orders' ))
+    router.use('/setter', require('./setter'));
+    router.use('/routes', require('./routes_set' ));
     router.use('/', require('./swagger'));
 }catch (error){
     console.log(error)
-
-    let myError = document.createElement("p");
-    myError.innerHTML = "Page not found. Sorry!" + error;
-    document.body.appendChild(myError);
 
 }
 

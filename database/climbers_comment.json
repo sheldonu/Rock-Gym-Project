@@ -1,0 +1,34 @@
+[
+    {
+        "comment_id": 1,
+        "message": "Awesome climb!",
+        "grade": "5.9",
+        "name": "Alice Smith",
+        "stars": 5,
+        "route_set_id": ""
+        },
+        {
+        "comment_id": 2,
+        "message": "Challenging but fun.",
+        "grade": "5.10b",
+        "name": "Bob Johnson",
+        "stars": 4,
+        "route_set_id": ""
+        },
+        {
+        "comment_id": 3,
+        "message": "Beautiful scenery!",
+        "grade": "5.7",
+        "name": "Charlie Brown",
+        "stars": 5,
+        "route_set_id": ""
+        },
+        {
+        "comment_id": 4,
+        "message": "Tricky crux section.",
+        "grade": "5.11c",
+        "name": "David Davis",
+        "stars": 3,
+        "route_set_id": ""
+        }
+]

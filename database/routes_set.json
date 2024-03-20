@@ -1,0 +1,72 @@
+[
+    {
+          "name": "Crazy Crux",
+          "grade": "5.10a",
+          "route_setter_id": "",
+          "definition": "Challenging route with a tricky crux section.",
+          "color": "red"
+        },
+        {
+          "name": "Vertical Vortex",
+          "grade": "5.8",
+          "route_setter_id": "",
+          "definition": "A fun vertical climb suitable for all skill levels.",
+          "color": "blue"
+        },
+        {
+          "name": "Boulder Bash",
+          "grade": "V2",
+          "route_setter_id": "",
+          "definition": "Short but intense bouldering problem with dynamic moves.",
+          "color": "green"
+        },
+        {
+          "name": "Slab Symphony",
+          "grade": "5.7",
+          "route_setter_id": "",
+          "definition": "Easy slab climb perfect for beginners.",
+          "color": "yellow"
+        },
+        {
+          "name": "Overhang Odyssey",
+          "grade": "5.12b",
+          "route_setter_id": "",
+          "definition": "Advanced climb featuring a challenging overhang section.",
+          "color": "orange"
+        },
+        {
+          "name": "Crack Classic",
+          "grade": "5.9",
+          "route_setter_id": "",
+          "definition": "Classic crack climb with varied hand and foot placements.",
+          "color": "brown"
+        },
+        {
+          "name": "Dyno Dilemma",
+          "grade": "V3",
+          "route_setter_id": "",
+          "definition": "Dynamic moves and jumps characterize this bouldering problem.",
+          "color": "purple"
+        },
+        {
+          "name": "Toprope Tango",
+          "grade": "5.6",
+          "route_setter_id": "",
+          "definition": "Gentle climb suitable for beginners, protected by a toprope.",
+          "color": "pink"
+        },
+        {
+          "name": "Ledge Labyrinth",
+          "grade": "5.10c",
+          "route_setter_id": "",
+          "definition": "Technical climb with intricate movements around ledges.",
+          "color": "gray"
+        },
+        {
+          "name": "Crux Crusher",
+          "grade": "5.11a",
+          "route_setter_id": "",
+          "definition": "Challenge yourself with a difficult crux sequence.",
+          "color": "black"
+        }
+]

@@ -1,0 +1,37 @@
+[
+        {
+        "name": "John Doe",
+        "username": "john_doe123",
+        "password": "securePassword123",
+        "email": "john.doe@example.com",
+        "route_set_id": ["", "", "", ""]
+      },
+      {
+        "name": "Alice Smith",
+        "username": "alice_smith",
+        "password": "strongPass456",
+        "email": "alice.smith@example.com",
+        "route_set_id": [""]
+      },
+      {
+        "name": "Bob Johnson",
+        "username": "bob_johnson789",
+        "password": "secretPass789",
+        "email": "bob.johnson@example.com",
+        "route_set_id": ["", ""]
+      },
+      {
+        "name": "Eva Miller",
+        "username": "eva_miller",
+        "password": "evaSecurePass",
+        "email": "eva.miller@example.com",
+        "route_set_id": ["", "", "", ""]
+      },
+      {
+        "name": "David Wilson",
+        "username": "david_wilson",
+        "password": "davidPass123",
+        "email": "david.wilson@example.com",
+        "route_set_id": [""]
+      }
+    ]
