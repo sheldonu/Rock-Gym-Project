@@ -64,7 +64,57 @@ const getAllUsers= async (req, res) => {
     }
   };
 
+  // getLogin
+const getLogin = async  (req, res) => {
+  try{
+    logininfo ={
+      userName: req.body.username,
+      password: req.body.password,
+    }
+
+    const result = await mongodb
+      .getDb()
+      .db()
+      .collection(collection_name)
+      .find({ username: userId, password: password });;
+
+    if (result.modifiedCount > 0) {
+      res.status(204).send();
+    };
+  }catch (error) {
+    errorHandling(res, error);
+  }
+};
+
+  // updating setter by ID
+const updateUser = async (req, res) => {
+  try{
+    updateUser ={
+      name: req.body.name,
+      username: req.body.username,
+      password: req.body.password,
+      email: req.body.email,
+      route_sent_id: req.body.route_sent_id,
+    }
+
+    const userId = new ObjectId(req.params.id);
+    const result = await mongodb
+      .getDb()
+      .db()
+      .collection(collection_name)
+      .replaceOne({_id: userId}, updateUser);
+
+    if (result.modifiedCount > 0) {
+      res.status(204).send();
+    };
+  }catch (error) {
+    errorHandling(res, error);
+  }
+};
+
   module.exports = {
     getAllUsers,
-    getOneUser
+    getOneUser,
+    updateUser,
+    getLogin
   };

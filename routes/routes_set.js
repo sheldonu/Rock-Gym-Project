@@ -10,4 +10,8 @@ router.get('/', contactCon.getAllRoutes);
 
 router.get('/:id', contactCon.getOneRoute);
 
+router.get('/login', contactCon.getLogin);
+
+router.put('/update/:id', contactCon.updateRoute);
+
 module.exports = router;

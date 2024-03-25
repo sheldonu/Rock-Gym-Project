@@ -8,6 +8,6 @@ const contactCon = require('../controller/climbers_comments')
 // GET /feed/posts
 router.get('/', contactCon.getAllComments);
 
-router.get('/:id', contactCon.getOneComment);
+router.put('/update/:id', contactCon.updateComment);
 
 module.exports = router;

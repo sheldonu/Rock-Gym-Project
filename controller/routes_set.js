@@ -64,7 +64,56 @@ const getAllRoutes = async (req, res) => {
     }
   };
 
+  // getLogin
+const getLogin = async  (req, res) => {
+    try{
+      logininfo ={
+        userName: req.body.username,
+        password: req.body.password,
+      }
+  
+      const result = await mongodb
+        .getDb()
+        .db()
+        .collection(collection_name)
+        .find({ username: userId, password: password });;
+  
+      if (result.modifiedCount > 0) {
+        res.status(204).send();
+      };
+    }catch (error) {
+      errorHandling(res, error);
+    }
+  };
+  // updating route by ID
+const updateRoute = async (req, res) => {
+  try{
+    updateRoute ={
+      name: req.body.name,
+      grade: req.body.grade,
+      route_setter_id: req.body.route_setter_id,
+      definition: req.body.definition,
+      color: req.body.color,
+    }
+
+    const routeId = new ObjectId(req.params.id);
+    const result = await mongodb
+      .getDb()
+      .db()
+      .collection(collection_name)
+      .replaceOne({_id: routeId}, updateRoute);
+
+    if (result.modifiedCount > 0) {
+      res.status(204).send();
+    };
+  }catch (error) {
+    errorHandling(res, error);
+  }
+};
+
   module.exports = {
     getAllRoutes,
-    getOneRoute
+    getOneRoute,
+    updateRoute,
+    getLogin
   };

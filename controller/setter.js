@@ -48,12 +48,12 @@ const getAllRouteSetters = async (req, res) => {
   //getting single one
   const getOneRouteSetter= async (req, res) => {
     try {
-      const userId = new ObjectId(req.params.id);
+      const setterId = new ObjectId(req.params.id);
       const result = await mongodb
         .getDb()
         .db()
         .collection(collection_name)
-        .find({ _id: userId });
+        .find({ _id: setterId });
       console.log(result);
       result.toArray().then((lists) => {
         res.setHeader('Content-Type', 'application/json');
@@ -64,7 +64,34 @@ const getAllRouteSetters = async (req, res) => {
     }
   };
 
-  module.exports = {
-    getAllRouteSetters,
-    getOneRouteSetter
-  };
+// updating setter by ID
+const updateRouteSetters = async (req, res) => {
+  try{
+    updateSetter ={
+      name: req.body.name,
+      username: req.body.username,
+      password: req.body.password,
+      email: req.body.email,
+      phoneNumber: req.body.phoneNumber,
+    }
+
+    const setterId = new ObjectId(req.params.id);
+    const result = await mongodb
+      .getDb()
+      .db()
+      .collection(collection_name)
+      .replaceOne({_id: setterId}, updateSetter);
+
+    if (result.modifiedCount > 0) {
+      res.status(204).send();
+    };
+  }catch (error) {
+    errorHandling(res, error);
+  }
+};
+
+module.exports = {
+  getAllRouteSetters,
+  getOneRouteSetter,
+  updateRouteSetters
+};

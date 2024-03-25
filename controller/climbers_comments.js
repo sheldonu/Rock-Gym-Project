@@ -64,7 +64,36 @@ const getAllComments = async (req, res) => {
     }
   };
 
+  
+// updating setter by ID
+const updateComment = async (req, res) => {
+  try{
+    updateComment ={
+      message: req.body.message,
+      grade: req.body.grade,
+      name: req.body.name,
+      stars: req.body.stars,
+      route_set_id: req.body.route_set_id
+    }
+
+    const commentId = new ObjectId(req.params.id);
+    const result = await mongodb
+      .getDb()
+      .db()
+      .collection(collection_name)
+      .replaceOne({_id: commentId}, updateComment);
+
+    if (result.modifiedCount > 0) {
+      res.status(204).send();
+    };
+  }catch (error) {
+    errorHandling(res, error);
+  }
+};
+
+
   module.exports = {
     getAllComments,
-    getOneComment
+    getOneComment,
+    updateComment
   };
