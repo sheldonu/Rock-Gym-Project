@@ -14,4 +14,6 @@ router.get('/login', contactCon.getLogin);
 
 router.put('/update/:id', contactCon.updateRoute);
 
+router.post('/', contactCon.createRoute);
+
 module.exports = router;
