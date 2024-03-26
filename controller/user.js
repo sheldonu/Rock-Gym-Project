@@ -94,7 +94,7 @@ const updateUser = async (req, res) => {
       username: req.body.username,
       password: req.body.password,
       email: req.body.email,
-      route_sent_id: req.body.route_sent_id,
+      route_sent_id: req.body.route_sent_id
     }
 
     const userId = new ObjectId(req.params.id);
@@ -112,9 +112,41 @@ const updateUser = async (req, res) => {
   }
 };
 
+// create user
+const createUser = async (req, res) => {
+  try{
+    const user = {
+      name: req.body.name,
+      username: req.body.username,
+      password: req.body.password,
+      email: req.body.email,
+      route_sent_id: req.body.route_sent_id
+    };
+    const response = await mongodb.getDb().db().collection('climbers_account').insertOne(user);
+    if (response.acknowledge) {
+      res.status(201).json(response);
+    };
+    }catch (error) {
+      errorHandling(res, error);
+  }
+};
+
+const deleteUser = async (req, res) => {
+  const userId = new ObjectId(req.params.id);
+  const response = await mongodb.getDb().db().collection('climbers_account').deleteOne({ _id: userId }, true);
+  console.log(response);
+  if (response.deletedCount > 0) {
+    res.status(200).send();
+  } else {
+    res.status(500).json(response.error || 'Some error occurred while deleting the contact.');
+  }
+};
+
   module.exports = {
     getAllUsers,
     getOneUser,
     updateUser,
-    getLogin
+    getLogin,
+    createUser,
+    deleteUser
   };

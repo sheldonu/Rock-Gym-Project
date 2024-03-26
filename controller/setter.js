@@ -118,7 +118,7 @@ const deleteSetter = async (req, res) => {
   } else {
     res.status(500).json(response.error || 'Some error occurred while deleting the contact.');
   }
-}
+};
 
 module.exports = {
   getAllRouteSetters,
