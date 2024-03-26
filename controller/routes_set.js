@@ -130,10 +130,22 @@ const createRoute = async (req, res) => {
   }
 }
 
+const deleteRoute = async (req, res) => {
+  const userId = new ObjectId(req.params.id);
+  const response = await mongodb.getDb().db().collection('routes_set').deleteOne({ _id: userId }, true);
+  console.log(response);
+  if (response.deletedCount > 0) {
+    res.status(200).send();
+  } else {
+    res.status(500).json(response.error || 'Some error occurred while deleting the contact.');
+  }
+}
+
   module.exports = {
     getAllRoutes,
     getOneRoute,
     updateRoute,
     getLogin,
-    createRoute
+    createRoute,
+    deleteRoute
   };
