@@ -1,7 +1,7 @@
 {
-  "name": "littlewarmies",
+  "name": "rockgym",
   "version": "1.0.0",
-  "description": "website to display and order little light warmies",
+  "description": "webservice to get, post, put and delete data all relating to rock climbing routes.",
   "main": "server.js",
   "scripts": {
     "test": "jest",
