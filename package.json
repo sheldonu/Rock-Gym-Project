@@ -11,10 +11,12 @@
   "author": "Anna",
   "license": "ISC",
   "dependencies": {
+    "@google-cloud/local-auth": "^2.1.0",
     "cors": "^2.8.5",
     "dotenv": "^16.4.1",
     "express": "^4.18.2",
     "express-validator": "^7.0.1",
+    "googleapis": "^105.0.0",
     "mongodb": "^6.3.0",
     "swagger-ui-express": "^5.0.0"
   },
