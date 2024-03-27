@@ -90,8 +90,40 @@ const updateRouteSetters = async (req, res) => {
   }
 };
 
+// create setter
+const createSetter = async (req, res) => {
+  try{
+    const setter = {
+      name: req.body.name,
+      username: req.body.username,
+      password: req.body.password,
+      email: req.body.email,
+      phoneNumber: req.body.phoneNumber
+    };
+    const response = await mongodb.getDb().db().collection('route_setter').insertOne(setter);
+    if (response.acknowledge) {
+      res.status(201).json(response);
+    };
+    }catch (error) {
+      errorHandling(res, error);
+  }
+};
+
+const deleteSetter = async (req, res) => {
+  const userId = new ObjectId(req.params.id);
+  const response = await mongodb.getDb().db().collection('route_setter').deleteOne({ _id: userId }, true);
+  console.log(response);
+  if (response.deletedCount > 0) {
+    res.status(200).send();
+  } else {
+    res.status(500).json(response.error || 'Some error occurred while deleting the contact.');
+  }
+};
+
 module.exports = {
   getAllRouteSetters,
   getOneRouteSetter,
-  updateRouteSetters
+  updateRouteSetters,
+  createSetter,
+  deleteSetter
 };

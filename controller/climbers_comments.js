@@ -28,7 +28,8 @@ function errorHandling(res, error) {
   }
 }
 
-// getting all the route setters form database
+
+// getting all the comments from database
 const getAllComments = async (req, res) => {
     try {
         // .find finds everything in there
@@ -64,11 +65,30 @@ const getAllComments = async (req, res) => {
     }
   };
 
+// create comment
+const createComment = async (req, res) => {
+  try{
+    const comment = {
+      message: req.body.message,
+      grade: req.body.grade,
+      name: req.body.name,
+      stars: req.body.stars,
+      route_set_id: req.body.route_set_id
+    };
+    const response = await mongodb.getDb().db().collection('climbers_comment').insertOne(comment);
+    if (response.acknowledge) {
+      res.status(201).json(response);
+    };
+    }catch (error) {
+      errorHandling(res, error);
+  }
+}
+
   
 // updating setter by ID
 const updateComment = async (req, res) => {
   try{
-    updateComment ={
+    const comment = {
       message: req.body.message,
       grade: req.body.grade,
       name: req.body.name,
@@ -81,7 +101,7 @@ const updateComment = async (req, res) => {
       .getDb()
       .db()
       .collection(collection_name)
-      .replaceOne({_id: commentId}, updateComment);
+      .replaceOne({ _id: commentId }, comment);
 
     if (result.modifiedCount > 0) {
       res.status(204).send();
@@ -89,11 +109,24 @@ const updateComment = async (req, res) => {
   }catch (error) {
     errorHandling(res, error);
   }
-};
+}
+
+const deleteComment = async (req, res) => {
+  const userId = new ObjectId(req.params.id);
+  const response = await mongodb.getDb().db().collection('climbers_comment').deleteOne({ _id: userId }, true);
+  console.log(response);
+  if (response.deletedCount > 0) {
+    res.status(200).send();
+  } else {
+    res.status(500).json(response.error || 'Some error occurred while deleting the contact.');
+  }
+}
 
 
   module.exports = {
     getAllComments,
     getOneComment,
-    updateComment
+    updateComment,
+    createComment,
+    deleteComment
   };

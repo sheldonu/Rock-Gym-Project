@@ -12,6 +12,10 @@ router.get('/:id', contactCon.getOneRouteSetter);
 
 router.put('/update/:id', contactCon.updateRouteSetters);
 
+router.post('/', contactCon.createSetter);
+
+router.delete('/:id', contactCon.deleteSetter);
+
 
 
 module.exports = router;
