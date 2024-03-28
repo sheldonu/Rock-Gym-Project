@@ -1,6 +1,7 @@
 // Import the function you want to test
-const { getAllRoutes } = require('../controller/routes_set');
+const { getAllRoutes, getOneRoute } = require('../controller/routes_set');
 const mongodb = require('../db/connect');
+const ObjectId = require('mongodb').ObjectId;
 
 const getAllRoutesOutput = [
   {
@@ -84,6 +85,18 @@ const getAllRoutesOutput = [
     "color": "black"
   }
 ]
+// get one
+const singleRouteOutput = [
+  {
+    "_id": "65f9fa1a23b5b93fc0f0e906",
+    "name": "Crux Crusher",
+    "grade": "5.11a",
+    "route_setter_id": "65f9f91c23b5b93fc0f0e8e2",
+    "definition": "Challenge yourself with a difficult crux sequence.",
+    "color": "black"
+  }
+];
+const getSingleParam = { id: '65f9fa1a23b5b93fc0f0e906' }
 
 // Mock MongoDB
 jest.mock('../db/connect', () => ({
@@ -111,10 +124,36 @@ describe('getAllRoutes function', () => {
     };
   });
 
-  it('should get all comments and return status 200 with JSON', async () => {
+  it('should get all Routes and return status 200 with JSON', async () => {
     await getAllRoutes(req, res);
 
     expect(res.status).toHaveBeenCalledWith(200);
     expect(res.json).toHaveBeenCalledWith(getAllRoutesOutput);
+  });
+});
+
+// testing the get one Route
+describe('getOneRoute function', () => {
+  // Mock Express' req and res objects
+  const req = { params: getSingleParam };
+  let res;
+
+  beforeEach(() => {
+    res = {
+      setHeader: jest.fn(),
+      status: jest.fn().mockReturnThis(), // To allow chaining
+      json: jest.fn(),
+    };
+  });
+
+  it('should get one Route by ID and return status 200 with JSON', async () => {
+
+    // Mock find and toArray to return the single Route
+    mongodb.getDb().db().collection().find().toArray.mockResolvedValue(singleRouteOutput);
+
+    await getOneRoute(req, res);
+
+    expect(res.status).toHaveBeenCalledWith(200);
+    expect(res.json).toHaveBeenCalledWith(singleRouteOutput);
   });
 });

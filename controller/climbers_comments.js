@@ -55,7 +55,7 @@ const getAllComments = async (req, res) => {
         .db()
         .collection(collection_name)
         .find({ _id: userId });
-      console.log(result);
+      // console.log(result);
       result.toArray().then((lists) => {
         res.setHeader('Content-Type', 'application/json');
         res.status(200).json(lists);
@@ -75,7 +75,7 @@ const createComment = async (req, res) => {
       stars: req.body.stars,
       route_set_id: req.body.route_set_id
     };
-    const response = await mongodb.getDb().db().collection('climbers_comment').insertOne(comment);
+    const response = await mongodb.getDb().db().collection(collection_name).insertOne(comment);
     if (response.acknowledge) {
       res.status(201).json(response);
     };
@@ -84,7 +84,6 @@ const createComment = async (req, res) => {
   }
 }
 
-  
 // updating setter by ID
 const updateComment = async (req, res) => {
   try{
@@ -100,7 +99,7 @@ const updateComment = async (req, res) => {
     const result = await mongodb
       .getDb()
       .db()
-      .collection(collection_name)
+      .collection('climbers_comment')
       .replaceOne({ _id: commentId }, comment);
 
     if (result.modifiedCount > 0) {
@@ -113,8 +112,7 @@ const updateComment = async (req, res) => {
 
 const deleteComment = async (req, res) => {
   const userId = new ObjectId(req.params.id);
-  const response = await mongodb.getDb().db().collection('climbers_comment').deleteOne({ _id: userId }, true);
-  console.log(response);
+  const response = await mongodb.getDb().db().collection(collection_name).deleteOne({ _id: userId }, true);
   if (response.deletedCount > 0) {
     res.status(200).send();
   } else {

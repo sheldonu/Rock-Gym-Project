@@ -1,6 +1,7 @@
 // Import the function you want to test
-const { getAllUsers } = require('../controller/user');
+const { getAllUsers, getOneUser } = require('../controller/user');
 const mongodb = require('../db/connect');
+const ObjectId = require('mongodb').ObjectId;
 
 const getAllUserOutput = [
     {
@@ -61,6 +62,20 @@ const getAllUserOutput = [
       ]
     }
   ]
+// get one
+const singleUserOutput = [
+  {
+    "_id": "65f9fc8223b5b93fc0f0e919",
+    "name": "David Wilson",
+    "username": "david_wilson",
+    "password": "davidPass123",
+    "email": "david.wilson@example.com",
+    "route_sent_id": [
+      "65f9fa1a23b5b93fc0f0e8ff"
+    ]
+  }
+];
+const getSingleParam = { id: '65f9fc8223b5b93fc0f0e919' }
 
 // Mock MongoDB
 jest.mock('../db/connect', () => ({
@@ -88,10 +103,36 @@ describe('getAllUsers function', () => {
     };
   });
 
-  it('should get all comments and return status 200 with JSON', async () => {
+  it('should get all Users and return status 200 with JSON', async () => {
     await getAllUsers(req, res);
 
     expect(res.status).toHaveBeenCalledWith(200);
     expect(res.json).toHaveBeenCalledWith(getAllUserOutput);
+  });
+});
+
+// testing the get one User
+describe('getOneUser function', () => {
+  // Mock Express' req and res objects
+  const req = { params: getSingleParam };
+  let res;
+
+  beforeEach(() => {
+    res = {
+      setHeader: jest.fn(),
+      status: jest.fn().mockReturnThis(), // To allow chaining
+      json: jest.fn(),
+    };
+  });
+
+  it('should get one User by ID and return status 200 with JSON', async () => {
+
+    // Mock find and toArray to return the single User
+    mongodb.getDb().db().collection().find().toArray.mockResolvedValue(singleUserOutput);
+
+    await getOneUser(req, res);
+
+    expect(res.status).toHaveBeenCalledWith(200);
+    expect(res.json).toHaveBeenCalledWith(singleUserOutput);
   });
 });

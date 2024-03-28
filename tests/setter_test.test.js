@@ -1,6 +1,7 @@
 // Import the function you want to test
-const { getAllRouteSetters } = require('../controller/setter');
+const { getAllRouteSetters, getOneRouteSetter } = require('../controller/setter');
 const mongodb = require('../db/connect');
+const ObjectId = require('mongodb').ObjectId;
 
 const getAllSetterOutput = [
     {
@@ -44,6 +45,18 @@ const getAllSetterOutput = [
       "phoneNumber": "999-888-7777"
     }
   ]
+// get one
+const singleRouteSetterOutput = [
+  {
+    "_id": "65f9f91c23b5b93fc0f0e8e2",
+    "name": "Michael Wilson",
+    "username": "michael_wilson",
+    "password": "securepassword5",
+    "email": "michael.wilson@example.com",
+    "phoneNumber": "999-888-7777"
+  }
+];
+const getSingleParam = { id: '65f9f91c23b5b93fc0f0e8e2' }
 
 // Mock MongoDB
 jest.mock('../db/connect', () => ({
@@ -71,10 +84,36 @@ describe('getAllRouteSetters function', () => {
     };
   });
 
-  it('should get all comments and return status 200 with JSON', async () => {
+  it('should get all RouteSetters and return status 200 with JSON', async () => {
     await getAllRouteSetters(req, res);
 
     expect(res.status).toHaveBeenCalledWith(200);
     expect(res.json).toHaveBeenCalledWith(getAllSetterOutput);
+  });
+});
+
+// testing the get one RouteSetter
+describe('getOneRouteSetter function', () => {
+  // Mock Express' req and res objects
+  const req = { params: getSingleParam };
+  let res;
+
+  beforeEach(() => {
+    res = {
+      setHeader: jest.fn(),
+      status: jest.fn().mockReturnThis(), // To allow chaining
+      json: jest.fn(),
+    };
+  });
+
+  it('should get one RouteSetter by ID and return status 200 with JSON', async () => {
+
+    // Mock find and toArray to return the single RouteSetter
+    mongodb.getDb().db().collection().find().toArray.mockResolvedValue(singleRouteSetterOutput);
+
+    await getOneRouteSetter(req, res);
+
+    expect(res.status).toHaveBeenCalledWith(200);
+    expect(res.json).toHaveBeenCalledWith(singleRouteSetterOutput);
   });
 });

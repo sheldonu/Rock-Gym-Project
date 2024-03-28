@@ -54,7 +54,7 @@ const getAllRoutes = async (req, res) => {
         .db()
         .collection(collection_name)
         .find({ _id: userId });
-      console.log(result);
+      // console.log(result);
       result.toArray().then((lists) => {
         res.setHeader('Content-Type', 'application/json');
         res.status(200).json(lists);
@@ -133,7 +133,6 @@ const createRoute = async (req, res) => {
 const deleteRoute = async (req, res) => {
   const userId = new ObjectId(req.params.id);
   const response = await mongodb.getDb().db().collection('routes_set').deleteOne({ _id: userId }, true);
-  console.log(response);
   if (response.deletedCount > 0) {
     res.status(200).send();
   } else {
