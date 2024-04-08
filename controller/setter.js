@@ -101,7 +101,7 @@ const createSetter = async (req, res) => {
       phoneNumber: req.body.phoneNumber
     };
     const response = await mongodb.getDb().db().collection('route_setter').insertOne(setter);
-    if (response.acknowledge) {
+    if (response.acknowledged) {
       res.status(201).json(response);
     };
     }catch (error) {

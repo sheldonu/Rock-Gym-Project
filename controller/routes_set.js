@@ -85,7 +85,8 @@ const getLogin = async  (req, res) => {
       errorHandling(res, error);
     }
   };
-  // updating route by ID
+
+// updating route by ID
 const updateRoute = async (req, res) => {
   try{
     updateRoute ={
@@ -122,7 +123,7 @@ const createRoute = async (req, res) => {
       color: req.body.color
     };
     const response = await mongodb.getDb().db().collection('routes_set').insertOne(route);
-    if (response.acknowledge) {
+    if (response.acknowledged) {
       res.status(201).json(response);
     };
     }catch (error) {

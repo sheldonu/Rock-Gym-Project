@@ -1,7 +1,7 @@
 // Import the function you want to testupdateComment
 const { getAllComments, getOneComment, updateComment } = require('../controller/climbers_comments.js');
 const mongodb = require('../db/connect');
-const ObjectId = require('mongodb').ObjectId;
+const { ObjectId } = require('mongodb');
 
 //  all out put stuff and variables
 // getall
@@ -61,10 +61,66 @@ jest.mock('../db/connect', () => ({
         find: jest.fn().mockReturnValue({
           toArray: jest.fn().mockResolvedValue(getAllCommentsOutput),
         }),
+        replaceOne: jest.fn().mockResolvedValue({ modifiedCount: 1 }),
       }),
     }),
   }),
 }));
+
+// let res;
+// let req;
+
+// beforeEach(() => {
+//   // Mock Express' req and res objects
+//   req = {
+//     params: { id: '65f9fc2523b5b93fc0f0e90e' }, // Assuming you're using this ID for the update
+//     body: {
+//       message: 'Updated message',
+//       grade: 'Updated grade',
+//       name: 'Updated name',
+//       stars: 5, // Assuming stars should be updated
+//       route_set_id: 'Updated route set ID',
+//     },
+//   };
+
+//   res = {
+//     setHeader: jest.fn(),
+//     status: jest.fn().mockReturnValue({ json: jest.fn(), send: jest.fn() }),
+//   };
+// });
+
+// describe('updateComment function', () => {
+//   it('should update a comment and return status 204 on success', async () => {
+//     console.log('updaing a comment')
+//     await updateComment(req, res);
+//     console.log('updated the comment')
+
+//     expect(mongodb.getDb().db().collection().replaceOne).toHaveBeenCalledWith(
+//       { _id: new ObjectId(req.params.id) },
+//       {
+//         message: req.body.message,
+//         grade: req.body.grade,
+//         name: req.body.name,
+//         stars: req.body.stars,
+//         route_set_id: req.body.route_set_id,
+//       }
+//     );
+
+//     expect(res.status).toHaveBeenCalledWith(204);
+//     expect(res.send).toHaveBeenCalled();
+//     console.log('this is the expected')
+//   });
+
+//   it('should handle errors appropriately', async () => {
+//     // Mocking an error
+//     mongodb.getDb().db().collection().replaceOne.mockRejectedValue(new Error('Test error'));
+
+//     await updateComment(req, res);
+
+//     expect(res.status).toHaveBeenCalledWith(500); // Assuming your error handling sets status 500
+//     expect(res.send).toHaveBeenCalled();
+//   });
+// });
 
 // testing the get all comments
 describe('getAllComments function', () => {

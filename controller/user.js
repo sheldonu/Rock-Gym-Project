@@ -123,7 +123,7 @@ const createUser = async (req, res) => {
       route_sent_id: req.body.route_sent_id
     };
     const response = await mongodb.getDb().db().collection('climbers_account').insertOne(user);
-    if (response.acknowledge) {
+    if (response.acknowledged) {
       res.status(201).json(response);
     };
     }catch (error) {

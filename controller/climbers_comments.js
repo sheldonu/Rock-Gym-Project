@@ -1,5 +1,5 @@
 const mongodb = require('../db/connect');
-const ObjectId = require('mongodb').ObjectId;
+const {ObjectId} = require('mongodb');
 const collection_name = 'climbers_comment'
 
 //deleting an entry
@@ -7,7 +7,7 @@ function errorHandling(res, error) {
   // log error then finding the error
   console.error(error);
 
-  if (res.status(500)) {
+  if (res.status()) {
       res.status(500).json({ error: 'Internal Server Error' });
   } else if (res.status(404)) {
       res.status(404).json({ error: 'Page Not Found. Please return home' });
@@ -76,7 +76,7 @@ const createComment = async (req, res) => {
       route_set_id: req.body.route_set_id
     };
     const response = await mongodb.getDb().db().collection(collection_name).insertOne(comment);
-    if (response.acknowledge) {
+    if (response.acknowledged) {
       res.status(201).json(response);
     };
     }catch (error) {
@@ -86,7 +86,7 @@ const createComment = async (req, res) => {
 
 // updating setter by ID
 const updateComment = async (req, res) => {
-  try{
+  try {
     const comment = {
       message: req.body.message,
       grade: req.body.grade,
@@ -103,12 +103,15 @@ const updateComment = async (req, res) => {
       .replaceOne({ _id: commentId }, comment);
 
     if (result.modifiedCount > 0) {
+      console.log('Response sent with status code:', 204);
+
       res.status(204).send();
-    };
-  }catch (error) {
+    }
+  } catch (error) {
     errorHandling(res, error);
   }
 }
+
 
 const deleteComment = async (req, res) => {
   const userId = new ObjectId(req.params.id);
