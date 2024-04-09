@@ -5,7 +5,7 @@ const doc = {
     title: 'My API',
     description: 'Rock Gym API'
   },
-  host: 'redner',
+  host: 'rock-gym-project.onrender.com',
   schemes: ['http'],
 };
 
