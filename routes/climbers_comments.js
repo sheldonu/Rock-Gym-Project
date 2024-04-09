@@ -11,7 +11,7 @@ router.get('/:id', contactCon.getOneComment);
 
 router.put('/update/:id', validate.updateCommentValidationRules, validate.handleValidationErrors, contactCon.updateComment);
 
-router.post('/',  contactCon.createComment);
+router.post('/', validate.updateCommentValidationRules, validate.handleValidationErrors, contactCon.createComment);
 
 router.delete('/:id', contactCon.deleteComment);
 

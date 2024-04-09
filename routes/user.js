@@ -11,7 +11,7 @@ router.get('/:id', contactCon.getOneUser);
 
 router.put('/update/:id', validate.updateUserValidationRules, validate.handleValidationErrors, contactCon.updateUser);
 // userValidationRules(), validate,
-router.post('/',  contactCon.createUser);
+router.post('/', validate.updateUserValidationRules, validate.handleValidationErrors, contactCon.createUser);
 
 router.delete('/:id', contactCon.deleteUser);
 

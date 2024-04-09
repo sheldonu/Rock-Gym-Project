@@ -13,7 +13,7 @@ router.get('/:id', contactCon.getOneRoute);
 
 router.put('/update/:id', validate.updateRouteValidationRules, validate.handleValidationErrors, contactCon.updateRoute);
 
-router.post('/',  contactCon.createRoute);
+router.post('/', validate.updateRouteValidationRules, validate.handleValidationErrors, contactCon.createRoute);
 
 router.delete('/:id', contactCon.deleteRoute);
 

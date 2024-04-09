@@ -11,7 +11,7 @@ router.get('/:id', contactCon.getOneRouteSetter);
 
 router.put('/update/:id', validate.updateSetterValidationRules, validate.handleValidationErrors, contactCon.updateRouteSetters);
 
-router.post('/',  contactCon.createSetter);
+router.post('/', validate.updateSetterValidationRules, validate.handleValidationErrors, contactCon.createSetter);
 // setterValidationRules(), validate,
 
 router.delete('/:id', contactCon.deleteSetter);
