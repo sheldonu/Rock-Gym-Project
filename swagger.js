@@ -3,9 +3,9 @@ const swaggerAutogen = require('swagger-autogen')();
 const doc = {
   info: {
     title: 'My API',
-    description: 'littleLightWarmies API'
+    description: 'Rock Gym API'
   },
-  host: 'localhost:8080',
+  host: 'redner',
   schemes: ['http'],
 };
 
