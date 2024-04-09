@@ -90,8 +90,8 @@ const getLogin = async  (req, res) => {
 const updateUser = async (req, res) => {
   try{
     updateUser ={
-      name: req.body.name,
-      username: req.body.username,
+      firstname: req.body.firstname,
+      lastname: req.body.lastname,
       password: req.body.password,
       email: req.body.email,
       route_sent_id: req.body.route_sent_id
@@ -116,7 +116,8 @@ const updateUser = async (req, res) => {
 const createUser = async (req, res) => {
   try{
     const user = {
-      name: req.body.name,
+      firstname: req.body.firstname,
+      lastname: req.body.lastname,
       username: req.body.username,
       password: req.body.password,
       email: req.body.email,

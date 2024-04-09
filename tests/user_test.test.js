@@ -6,7 +6,8 @@ const ObjectId = require('mongodb').ObjectId;
 const getAllUserOutput = [
     {
       "_id": "65f9fc8223b5b93fc0f0e915",
-      "name": "John Doe",
+      "firstname": "John",
+        "lastname": "Doe",
       "username": "john_doe123",
       "password": "securePassword123",
       "email": "john.doe@example.com",
@@ -19,7 +20,8 @@ const getAllUserOutput = [
     },
     {
       "_id": "65f9fc8223b5b93fc0f0e916",
-      "name": "Alice Smith",
+      "firstname": "Alice",
+        "lastname": "Smith",
       "username": "alice_smith",
       "password": "strongPass456",
       "email": "alice.smith@example.com",
@@ -29,7 +31,8 @@ const getAllUserOutput = [
     },
     {
       "_id": "65f9fc8223b5b93fc0f0e917",
-      "name": "Bob Johnson",
+      "firstname": "Bob",
+        "lastname": "Johnson",
       "username": "bob_johnson789",
       "password": "secretPass789",
       "email": "bob.johnson@example.com",
@@ -40,7 +43,8 @@ const getAllUserOutput = [
     },
     {
       "_id": "65f9fc8223b5b93fc0f0e918",
-      "name": "Eva Miller",
+      "firstname": "Eva",
+        "lastname": "Miller",
       "username": "eva_miller",
       "password": "evaSecurePass",
       "email": "eva.miller@example.com",
@@ -53,7 +57,8 @@ const getAllUserOutput = [
     },
     {
       "_id": "65f9fc8223b5b93fc0f0e919",
-      "name": "David Wilson",
+      "firstname": "David" ,
+      "lastname": "Wilson",
       "username": "david_wilson",
       "password": "davidPass123",
       "email": "david.wilson@example.com",
@@ -65,17 +70,21 @@ const getAllUserOutput = [
 // get one
 const singleUserOutput = [
   {
-    "_id": "65f9fc8223b5b93fc0f0e919",
-    "name": "David Wilson",
-    "username": "david_wilson",
-    "password": "davidPass123",
-    "email": "david.wilson@example.com",
+    "_id": "65f9fc8223b5b93fc0f0e915",
+    "firstname": "John",
+      "lastname": "Doe",
+    "username": "john_doe123",
+    "password": "securePassword123",
+    "email": "john.doe@example.com",
     "route_sent_id": [
-      "65f9fa1a23b5b93fc0f0e8ff"
+      "65f9fa1a23b5b93fc0f0e8ff",
+      "65f9fa1a23b5b93fc0f0e905",
+      "65f9fa1a23b5b93fc0f0e906",
+      "65f9fa1a23b5b93fc0f0e901"
     ]
   }
 ];
-const getSingleParam = { id: '65f9fc8223b5b93fc0f0e919' }
+const getSingleParam = { id: '65f9fc8223b5b93fc0f0e915' }
 
 // Mock MongoDB
 jest.mock('../db/connect', () => ({
