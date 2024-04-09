@@ -3,7 +3,7 @@ const swaggerAutogen = require('swagger-autogen')();
 const doc = {
   info: {
     title: 'My API',
-    description: 'littleLightWarmies API'
+    description: 'Rock Gym API'
   },
   host: 'little-light-warmies.onrender.com',
   schemes: ['http'],
