@@ -6,7 +6,7 @@ const doc = {
     description: 'Rock Gym API'
   },
   host: 'rock-gym-project.onrender.com',
-  schemes: ['http'],
+  schemes: ['https'],
 };
 
 const outputFile = './swagger.json';

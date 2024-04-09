@@ -8,7 +8,7 @@
   "host": "rock-gym-project.onrender.com",
   "basePath": "/",
   "schemes": [
-    "http"
+    "https"
   ],
   "paths": {
     "/setter/": {
@@ -302,7 +302,10 @@
             "schema": {
               "type": "object",
               "properties": {
-                "name": {
+                "firstname": {
+                  "example": "any"
+                },
+                "lastname": {
                   "example": "any"
                 },
                 "username": {
@@ -387,10 +390,10 @@
             "schema": {
               "type": "object",
               "properties": {
-                "name": {
+                "firstname": {
                   "example": "any"
                 },
-                "username": {
+                "lastname": {
                   "example": "any"
                 },
                 "password": {
