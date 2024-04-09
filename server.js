@@ -12,7 +12,7 @@ const port = process.env.PORT || 8080;
 const app = express();
 
 const corsOptions = {
-  origin: 'https://rock-gym-project.onrender.com/',
+  origin: 'https://rock-gym-project.onrender.com',
   methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
   optionsSuccessStatus: 204,
 };
