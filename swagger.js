@@ -5,7 +5,7 @@ const doc = {
     title: 'My API',
     description: 'littleLightWarmies API'
   },
-  host: 'localhost:8080',
+  host: 'little-light-warmies.onrender.com',
   schemes: ['http'],
 };
 
